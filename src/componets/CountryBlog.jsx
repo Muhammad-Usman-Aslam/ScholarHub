@@ -10,7 +10,7 @@ const CountryBlogs = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/getblog")
+      .get("https://scholarhub-backend.vercel.app/api/getblog")
       .then((res) => {
         const filtered = res.data.filter(
           (item) =>
@@ -36,7 +36,7 @@ const CountryBlogs = () => {
             >
               <Card className="mb-4">
                 <Card.Img
-                  src={`http://localhost:5000/api/img/${blog._id}`}
+                  src={`https://scholarhub-backend.vercel.app/api/img/${blog._id}`}
                   style={{ height: 220, objectFit: "cover" }}
                 />
                 <Card.Body>

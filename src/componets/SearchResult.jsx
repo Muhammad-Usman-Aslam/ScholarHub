@@ -17,7 +17,7 @@ const SearchResult = () => {
       setError("");
 
       const res = await axios.get(
-        `http://localhost:5000/api/search?keyword=${keyword}`
+        `https://scholarhub-backend.vercel.app/api/search?keyword=${keyword}`
       );
 
       setBlogs(res.data);
@@ -69,7 +69,7 @@ const SearchResult = () => {
 
                   <Card.Img
                     variant="top"
-                    src={`http://localhost:5000/api/img/${v._id}`}
+                    src={`https://scholarhub-backend.vercel.app/api/img/${v._id}`}
                     style={{
                       height: "220px",
                       objectFit: "cover",

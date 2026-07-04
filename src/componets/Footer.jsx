@@ -28,7 +28,7 @@ const Footer = () => {
     try {
       setLoading(true);
 
-      await axios.post("http://localhost:5000/api/subscriber", {
+      await axios.post("https://scholarhub-backend.vercel.app/api/subscriber", {
         email,
       });
 

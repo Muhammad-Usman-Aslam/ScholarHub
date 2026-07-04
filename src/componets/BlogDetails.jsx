@@ -29,7 +29,7 @@ const BlogDetails = () => {
       setError("");
 
       const res = await axios.get(
-        `http://localhost:5000/api/getblog/${id}`
+        `https://scholarhub-backend.vercel.app/api/getblog/${id}`
       );
 
       setBlog(res.data);
@@ -75,7 +75,7 @@ const BlogDetails = () => {
           }}
         >
           <img
-            src={`http://localhost:5000/api/img/${blog._id}`}
+            src={`https://scholarhub-backend.vercel.app/api/img/${blog._id}`}
             alt={blog.title}
             className="img-fluid"
             style={{

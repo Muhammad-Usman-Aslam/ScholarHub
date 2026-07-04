@@ -17,7 +17,7 @@ const GetData = () => {
 
   const getBlogs = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/getblog");
+      const response = await axios.get("https://scholarhub-backend.vercel.app/api/getblog");
       setData(response.data);
     } catch (error) {
       console.log(error);
@@ -77,7 +77,7 @@ const GetData = () => {
                   >
                     <Card.Img
                       variant="top"
-                      src={`http://localhost:5000/api/img/${v._id}`}
+                      src={`https://scholarhub-backend.vercel.app/api/img/${v._id}`}
                       style={{
                         height: "200px",
                         objectFit: "cover",
@@ -100,42 +100,6 @@ const GetData = () => {
                       <strong>{v.city ? "City" : "Country"}:</strong> {v.city || v.country}
                       </Card.Text>
 
-                      {/* {v.description && (
-                        <Card.Text
-                          style={{
-                            display: "-webkit-box",
-                            WebkitLineClamp: 3,
-                            WebkitBoxOrient: "vertical",
-                            overflow: "hidden",
-                          }}
-                        >
-                          {v.description}
-                        </Card.Text>
-                      )} */}
-
-                      {/* {v.benefit && (
-                        <Card.Text>
-                          <strong>Benefits:</strong> {v.benefit}
-                        </Card.Text>
-                      )} */}
-
-                      {/* {v.criteria && (
-                        <Card.Text>
-                          <strong>Eligibility:</strong> {v.criteria}
-                        </Card.Text>
-                      )} */}
-
-                      {/* {v.document && (
-                        <Card.Text>
-                          <strong>Required Documents:</strong> {v.document}
-                        </Card.Text>
-                      )} */}
-
-                      {/* {v.apply && (
-                        <Card.Text>
-                          <strong>How to Apply:</strong> {v.apply}
-                        </Card.Text>
-                      )} */}
                     </Card.Body>
 
                     <Card.Footer className="bg-white">

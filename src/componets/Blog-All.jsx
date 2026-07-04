@@ -16,7 +16,7 @@ const Blog = () => {
 
   const getBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/getblog");
+      const res = await axios.get("https://scholarhub-backend.vercel.app/api/getblog");
       setBlogs(res.data);
     } catch (err) {
       console.log(err);
@@ -71,7 +71,7 @@ const Blog = () => {
 
                       <Card.Img
                         variant="top"
-                        src={`http://localhost:5000/api/img/${blog._id}`}
+                        src={`https://scholarhub-backend.vercel.app/api/img/${blog._id}`}
                         style={{
                           height: "220px",
                           objectFit: "cover",

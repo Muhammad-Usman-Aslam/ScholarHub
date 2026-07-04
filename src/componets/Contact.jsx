@@ -21,7 +21,7 @@ setLoading(true);
     setError("");
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/contact",form);
+      const { data } = await axios.post("https://scholarhub-backend.vercel.app/api/contact",form);
 
       setSuccess(data.message || "Message submitted successfully!");
 setForm({name: "",email: "",subject: "",message: "",});
