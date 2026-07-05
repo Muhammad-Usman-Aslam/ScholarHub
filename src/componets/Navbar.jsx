@@ -103,7 +103,7 @@ function NavigationBar() {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link  as={Link}  to="/blogs">
+            <Nav.Link  as={Link}  onClick={scrollToTop}  to="/blogs">
               Blogs
             </Nav.Link>
 
