@@ -45,11 +45,7 @@ const Footer = () => {
     <>
       
 
-      <footer
-        style={{
-         
-        }}
-      >
+      <footer      >
         <Container>
 
           {/* Newsletter */}
@@ -109,17 +105,15 @@ const Footer = () => {
 
           <Row className="gy-2 mt-4" style={{ marginBottom: "-25px" }}>
 
-            {/* Company */}
-
             <Col lg={4} md={6}>
               <h4 className="fw-bold mb-3">
                 ScholarHub
               </h4>
 
               <p style={{ lineHeight: "1.8" }}>
-                ScholarHub is a platform dedicated to sharing
+                ScholarHub is a platform for sharing
                 educational resources, scholarships,
-                internships, government jobs and valuable
+                Research internships, government positions and beneficial
                 learning opportunities from around the world.
               </p>
             </Col>
@@ -154,23 +148,23 @@ const Footer = () => {
 
                 <li className="mb-2">
                   <Link
-                    to="/govt-jobs"
+                    to="/jobs"
                     onClick={scrollToTop}
                     className="text-white text-decoration-none"
                   >
-                    Govt Jobs
+                    Jobs
                   </Link>
                 </li>
-
-                <li className="mb-2">
+<li className="mb-2">
                   <Link
-                    to="/contact"
+                    to="/scholarships"
                     onClick={scrollToTop}
                     className="text-white text-decoration-none"
                   >
-                    Contact
+                    Scholarships
                   </Link>
                 </li>
+                
 
               </ul>
             </Col>
@@ -196,7 +190,7 @@ const Footer = () => {
 
                 <li className="mb-2">
                   <Link
-                    to=""
+                    to="/privacy-policy"
                     onClick={scrollToTop}
                     className="text-white text-decoration-none"
                   >
@@ -206,7 +200,7 @@ const Footer = () => {
 
                 <li className="mb-2">
                   <Link
-                    to=""
+                    to="/terms-conditions"
                     onClick={scrollToTop}
                     className="text-white text-decoration-none"
                   >
@@ -216,11 +210,11 @@ const Footer = () => {
 
                 <li className="mb-2">
                   <Link
-                    to=""
+                    to="/contact"
                     onClick={scrollToTop}
                     className="text-white text-decoration-none"
                   >
-                    Disclaimer
+                    Contact
                   </Link>
                 </li>
 
@@ -245,14 +239,14 @@ const Footer = () => {
                 +92 309 9229243
               </p>
 
-              <p>
-                <FaEnvelope className="me-2" /> muhammadusmanaslam76@gmail.com
+              <p >
+                <FaEnvelope className="me-2 " /> muhammadusmanaslam76@gmail.com
               </p>
 
               <div className="mt-4">
 
                 <a
-                  href="https://www.facebook.com/profile.php?id=61584621186156"
+                  href="#"
                   className="text-white me-3 fs-5"
                 >
                   <FaFacebookF />

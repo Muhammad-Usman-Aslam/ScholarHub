@@ -11,7 +11,31 @@ import {
 } from "react-bootstrap";
 
 const normalizeCategory = (value = "") => {
-  return decodeURIComponent(value).trim().toLowerCase();
+  return decodeURIComponent(value)
+    .trim()
+    .toLowerCase()
+    .replace(/[_\s]+/g, "-")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+};
+
+const getCategoryVariants = (value = "") => {
+  const normalized = normalizeCategory(value);
+  const variants = new Set([normalized]);
+
+  if (normalized.endsWith("s") && normalized.length > 3) {
+    variants.add(normalized.slice(0, -1));
+  }
+
+  return [...variants].filter(Boolean);
+};
+
+const formatCategoryTitle = (value = "") => {
+  return decodeURIComponent(value)
+    .trim()
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
 const CategoryBlogs = () => {
@@ -23,15 +47,18 @@ const CategoryBlogs = () => {
   useEffect(() => {
     const getBlogs = async () => {
       try {
-        const res = await axios.get("https://scholarhub-backend.vercel.app/api/getblog");
+        const res = await axios.get("https://scholarhub-backend.vercel.app/api/getblogs");
 
         const selectedCategory = normalizeCategory(category);
 
-        const filteredBlogs = res.data.filter(
-          (blog) =>
-            blog.category &&
-            normalizeCategory(blog.category) === selectedCategory
-        );
+        const filteredBlogs = res.data.filter((blog) => {
+          if (!blog.category) return false;
+
+          const blogVariants = getCategoryVariants(blog.category);
+          const selectedVariants = getCategoryVariants(selectedCategory);
+
+          return selectedVariants.some((variant) => blogVariants.includes(variant));
+        });
 
         setBlogs(filteredBlogs);
       } catch (error) {
@@ -54,8 +81,8 @@ const CategoryBlogs = () => {
 
   return (
     <Container className="my-5">
-      <h2 className=" text-primary mb-5">
-        {decodeURIComponent(category)}
+      <h2 className="text-primary mb-5">
+        {formatCategoryTitle(category)}
       </h2>
 
       <Row>
@@ -117,7 +144,7 @@ const CategoryBlogs = () => {
         ) : (
           <Col>
             <h4 className="text-center text-danger">
-              No blogs found for "{decodeURIComponent(category)}"
+              No blogs found for "{formatCategoryTitle(category)}"
             </h4>
           </Col>
         )}

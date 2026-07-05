@@ -48,11 +48,11 @@ const About = () => {
               </h4>
 
               <p className="lead">
-                 Passionate about Full Stack Web Development with expertise in building
-  modern, responsive, and scalable web applications. I specialize in the
-  MERN Stack (MongoDB, Express.js, React.js, Node.js) and enjoy creating
-  high-performance websites, RESTful APIs, and user-friendly interfaces
-  that deliver seamless digital experiences.
+                 Passionate about Full Stack Web Development, with expertise in building.
+  Responsive, modern, and scalable Web applications. I specialize in the
+  The MERN Stack (Mongo + Express + React + Node) is one of the fastest-growing full stack frameworks and enjoy building with it.
+  High performance websites, RESTful APIs and user-friendly interfaces
+  that provide smooth digital experiences.
               </p>
 
              <Button
@@ -83,14 +83,14 @@ const About = () => {
 
                 <p style={{ lineHeight: "1.9" }}>
   I am <strong>Muhammad Usman Aslam</strong>, a passionate Full Stack Web
-  Developer from Pakistan with expertise in building modern, responsive,
-  and scalable web applications.
+  Pakistan Developer with experience developing modern, responsive,
+  and scalable Web applications.
 </p>
 
 <p style={{ lineHeight: "1.9" }}>
-  I specialize in developing high-quality websites using the MERN Stack
-  (MongoDB, Express.js, React.js, and Node.js), creating intuitive user
-  interfaces, secure backend systems, and efficient RESTful APIs.
+  I am a developer skilled at creating well-crafted websites with the MERN Stack.
+  We can build a user-friendly application with (MongoDB, Express.js, React.js and Node.js).
+  Secure Backend systems, efficient RESTful APIs, interfaces.
 </p>
               </Card.Body>
             </Card>
@@ -248,15 +248,15 @@ const About = () => {
                 </h2>
 
                 <ul style={{ lineHeight: "2" }}>
-  <li>Develop modern and scalable MERN Stack web applications.</li>
-  <li>Create responsive business, portfolio, and corporate websites.</li>
-  <li>Build e-commerce websites with secure payment integration.</li>
-  <li>Develop custom CMS, blog, and admin dashboard systems.</li>
-  <li>Create secure RESTful APIs with Node.js and Express.js.</li>
-  <li>Work with MongoDB and MySQL databases for efficient data management.</li>
-  <li>Optimize website performance, SEO, and loading speed.</li>
-  <li>Implement authentication, authorization, and data security.</li>
-  <li>Provide website maintenance, updates, and technical support.</li>
+  <li>Create modern and scalable real-world MERN stack Web applications..</li>
+  <li>Develop responsive business and portfolio and corporate websites.</li>
+  <li>Create e-commerce sites with secure payment integration.</li>
+  <li>Create custom CMS, blog and admin dashboard systems.</li>
+  <li>Build secure RESTful API in nodejs & Express.js.</li>
+  <li>Work with mongoDB and MySQL databases for efficient data management.</li>
+  <li>Optimize website speed, search engine optimization, and webpages.</li>
+  <li>Adopt authentication, authorization & data security.</li>
+  <li>Maintain, update and support websites..</li>
 </ul>
 
               </Card.Body>

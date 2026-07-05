@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Badge,
-  Spinner,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Badge, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Blog = () => {
+const ScholarshipPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,49 +30,42 @@ const Blog = () => {
     );
   }
 
-  // Get unique categories
-  const categories = [...new Set(blogs.map((b) => b.category))];
+  // 👉 filter only scholarship-related blogs
+  const scholarshipBlogs = blogs.filter((b) =>
+    b.category.toLowerCase().includes("scholar")
+  );
+
+  const categories = [...new Set(scholarshipBlogs.map((b) => b.category))];
 
   return (
     <Container className="my-5">
-
-      <h1 className="text-center text-primary fw-bold mb-5">
-        All Scholarships & Jobs
+      <h1 className="text-center text-success fw-bold mb-5">
+        Scholarships
       </h1>
 
       {categories.map((category) => (
         <div key={category} className="mb-5">
-
-          <h2 className="mb-4 border-bottom pb-2 text-success">
+          <h2 className="mb-4 border-bottom pb-2 text-primary">
             {category}
           </h2>
 
           <Row>
-            {blogs
+            {scholarshipBlogs
               .filter((blog) => blog.category === category)
               .map((blog) => (
                 <Col lg={4} md={6} sm={12} key={blog._id} className="mb-4">
-
                   <Link
                     to={`/blog/${blog._id}`}
-                    style={{
-                      textDecoration: "none",
-                      color: "inherit",
-                    }}
+                    style={{ textDecoration: "none", color: "inherit" }}
                   >
                     <Card className="shadow h-100">
-
                       <Card.Img
                         variant="top"
-                        src={`https://scholarhub-backend.vercel.app/api/img/${blog._id}`}
-                        style={{
-                          height: "220px",
-                          objectFit: "cover",
-                        }}
+                        src={`http://localhost:5000/api/img/${blog._id}`}
+                        style={{ height: "220px", objectFit: "cover" }}
                       />
 
                       <Card.Body>
-
                         <Badge bg="success" className="mb-2">
                           {blog.category}
                         </Badge>
@@ -90,44 +76,25 @@ const Blog = () => {
                           <strong>Country:</strong> {blog.country}
                         </Card.Text>
 
-                        <Card.Text
-                          style={{
-                            height: "70px",
-                            overflow: "hidden",
-                          }}
-                        >
+                        <Card.Text style={{ height: "70px", overflow: "hidden" }}>
                           {blog.description}
                         </Card.Text>
-
                       </Card.Body>
 
                       <Card.Footer>
-
                         <small className="text-danger">
                           Deadline: {blog.deadline}
                         </small>
-
-                        <br />
-
-                        <small className="text-muted">
-                          Posted:{" "}
-                          {new Date(blog.createdAt).toLocaleDateString()}
-                        </small>
-
                       </Card.Footer>
-
                     </Card>
                   </Link>
-
                 </Col>
               ))}
           </Row>
-
         </div>
       ))}
-
     </Container>
   );
 };
 
-export default Blog;
+export default ScholarshipPage;

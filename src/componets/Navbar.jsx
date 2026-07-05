@@ -10,107 +10,224 @@ import Button from "react-bootstrap/Button";
 
 function NavigationBar() {
   const [keyword, setKeyword] = useState("");
+  const [expanded, setExpanded] = useState(false);
 
   const navigate = useNavigate();
 
-  const scrollToTop = () => {
+  const handleNavClick = () => {
     window.scrollTo({
       top: 0,
-      left: 0,
       behavior: "smooth",
     });
+
+    setExpanded(false);
   };
+
   const handleSearch = (e) => {
     e.preventDefault();
 
-    if (!keyword.trim()) return;
+    const cleanKeyword = keyword.trim().toLowerCase();
+    if (!cleanKeyword) return;
 
-    navigate(`/search/${encodeURIComponent(keyword.trim())}`);
+    setExpanded(false);
+    navigate(`/search/${encodeURIComponent(cleanKeyword)}`);
   };
 
   return (
-    <Navbar bg="primary" variant="dark" expand="lg" sticky="top">
+    <Navbar
+      bg="primary"
+      variant="dark"
+      expand="lg"
+      sticky="top"
+      expanded={expanded}
+      onToggle={(value) => setExpanded(value)}
+    >
       <Container>
-
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" onClick={handleNavClick}>
           ScholarHub
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbar-nav" />
 
-        <Navbar.Collapse
-          id="navbar-nav"
-          className="justify-content-between"
-        >
+        <Navbar.Collapse id="navbar-nav" className="justify-content-between">
           <Nav className="mx-auto gap-2 gap-lg-3">
-
-            <Nav.Link as={Link} to="/"
-             onClick={scrollToTop}
-            >
+            <Nav.Link as={Link} to="/" onClick={handleNavClick}>
               Home
             </Nav.Link>
 
-            <NavDropdown
-              title="Scholarships"
-              id="scholarships-dropdown"
-            >
-              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/Australia">
+            {/* Scholarships */}
+            <NavDropdown title="Scholarships">
+              <NavDropdown.Item
+                as={Link}
+                to="/country/australia"
+                onClick={handleNavClick}
+              >
                 Australia
               </NavDropdown.Item>
 
-              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/Italy">
-                Italy
+              <NavDropdown.Item
+                as={Link}
+                to="/country/austria"
+                onClick={handleNavClick}
+              >
+                Austria
               </NavDropdown.Item>
-
-              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/China">
-                China
-              </NavDropdown.Item>
-
-              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/Turkey">
-                Turkey
-              </NavDropdown.Item>
-
-              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/Germany">
-                Germany
-              </NavDropdown.Item>
-            </NavDropdown>
-
-            <NavDropdown
-              title="Jobs"
-              id="jobs-dropdown"
-            >
-              {/* Must match your database category exactly */}
 
               <NavDropdown.Item
                 as={Link}
-                to="/category/Government Jobs"
+                to="/country/belgium"
+                onClick={handleNavClick}
+              >
+                Belgium
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/brazil"
+                onClick={handleNavClick}
+              >
+                Brazil
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/canada"
+                onClick={handleNavClick}
+              >
+                Canada
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/china"
+                onClick={handleNavClick}
+              >
+                China
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/finland"
+                onClick={handleNavClick}
+              >
+                Finland
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/france"
+                onClick={handleNavClick}
+              >
+                France
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/germany"
+                onClick={handleNavClick}
+              >
+                Germany
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/hungary"
+                onClick={handleNavClick}
+              >
+                Hungary
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/italy"
+                onClick={handleNavClick}
+              >
+                Italy
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/japan"
+                onClick={handleNavClick}
+              >
+                Japan
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/russia"
+                onClick={handleNavClick}
+              >
+                Russia
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/saudi-arabia"
+                onClick={handleNavClick}
+              >
+                Saudi Arabia
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/turkey"
+                onClick={handleNavClick}
+              >
+                Turkey
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/country/united-states"
+                onClick={handleNavClick}
+              >
+                United States
+              </NavDropdown.Item>
+            </NavDropdown>
+
+            {/* Jobs */}
+            <NavDropdown title="Jobs">
+              <NavDropdown.Item
+                as={Link}
+                to="/category/government-jobs"
+                onClick={handleNavClick}
               >
                 Government Jobs
               </NavDropdown.Item>
 
               <NavDropdown.Item
-                as={Link}  onClick={scrollToTop}
-                to="/category/Private Jobs"
+                as={Link}
+                to="/category/private-jobs"
+                onClick={handleNavClick}
               >
                 Private Jobs
               </NavDropdown.Item>
 
               <NavDropdown.Item
-                as={Link}  onClick={scrollToTop}
-                to="/category/Multinational Companies"
+                as={Link}
+                to="/category/multinational-companies"
+                onClick={handleNavClick}
               >
                 Multinational Companies
               </NavDropdown.Item>
+
+              <NavDropdown.Item
+                as={Link}
+                to="/category/internships"
+                onClick={handleNavClick}
+              >
+                Internships
+              </NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link  as={Link}  onClick={scrollToTop}  to="/blogs">
+            <Nav.Link as={Link} to="/blogs" onClick={handleNavClick}>
               Blogs
             </Nav.Link>
 
-            <Nav.Link as={Link}  onClick={scrollToTop} to="/contact">
+            <Nav.Link as={Link} to="/contact" onClick={handleNavClick}>
               Contact Us
             </Nav.Link>
-
           </Nav>
 
           <Form className="d-flex" onSubmit={handleSearch}>
@@ -123,14 +240,10 @@ function NavigationBar() {
               onChange={(e) => setKeyword(e.target.value)}
             />
 
-            <Button
-              variant="light"
-              type="submit"
-            >
+            <Button variant="light" type="submit">
               Search
             </Button>
           </Form>
-
         </Navbar.Collapse>
       </Container>
     </Navbar>

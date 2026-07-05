@@ -1,84 +1,13 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <!-- Character Encoding -->
-  <meta charset="UTF-8" />
-
-  <!-- Mobile Responsive -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Favicon (Place education.png inside the public folder) -->
-  <link rel="icon" type="image/png" href="/education.png" />
-
-  <!-- SEO -->
-  <title>ScholarHub | Scholarships, Universities & Study Abroad</title>
-
-  <meta
-    name="description"
-    content="Discover scholarships, universities, internships, fellowships, research opportunities, and study abroad programs worldwide with ScholarHub."
-  />
-
-  <meta
-    name="keywords"
-    content="ScholarHub, Scholarships, Universities, Study Abroad, Fellowships, Research, Internships, Education"
-  />
-
-  <meta name="author" content="ScholarHub" />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0d6efd" />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://myscholarhub.vercel.app/" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ScholarHub" />
-  <meta property="og:title" content="ScholarHub | Scholarships, Universities & Study Abroad" />
-  <meta
-    property="og:description"
-    content="Discover scholarships, universities, internships, fellowships, research opportunities, and study abroad programs worldwide."
-  />
-  <meta property="og:url" content="https://myscholarhub.vercel.app/" />
-  <meta property="og:image" content="https://myscholarhub.vercel.app/education.png" />
-  <meta property="og:image:alt" content="ScholarHub Logo" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ScholarHub | Scholarships, Universities & Study Abroad" />
-  <meta
-    name="twitter:description"
-    content="Discover scholarships, universities, internships, fellowships, research opportunities, and study abroad programs worldwide."
-  />
-  <meta name="twitter:image" content="https://myscholarhub.vercel.app/education.png" />
-
-</head>
-
-<body>
-
-  <div id="root"></div>
-
-  <!-- React Entry -->
-  <script type="module" src="/src/main.jsx"></script>
-
-<script type="text/javascript">
-    (function (l) {
-      if (l.search[1] === "/") {
-        var decoded = l.search
-          .slice(1)
-          .split("&")
-          .map(function (s) {
-            return s.replace(/~and~/g, "&");
-          })
-          .join("?");
-        window.history.replaceState(
-          null,
-          null,
-          l.pathname.slice(0, -1) + decoded + l.hash
-        );
-      }
-    })(window.location);
-  </script>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./src//assets//education.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScholarHub</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

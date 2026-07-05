@@ -18,9 +18,10 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [relatedBlogs, setRelatedBlogs] = useState([]);
 
   useEffect(() => {
-    getBlog();
+    if (id) getBlog();
   }, [id]);
 
   const getBlog = async () => {
@@ -28,14 +29,35 @@ const BlogDetails = () => {
       setLoading(true);
       setError("");
 
+      // MAIN BLOG
       const res = await axios.get(
         `https://scholarhub-backend.vercel.app/api/getblog/${id}`
       );
 
+      if (!res.data) throw new Error("No blog found");
+
       setBlog(res.data);
+
+      // RELATED BLOGS (FIXED)
+      try {
+        const relatedRes = await axios.get(
+          `https://scholarhub-backend.vercel.app/api/getblogs?category=${encodeURIComponent(
+            res.data.category
+          )}`
+        );
+
+        setRelatedBlogs(
+          (relatedRes.data || []).filter((b) => b._id !== res.data._id)
+        );
+      } catch (err) {
+        setRelatedBlogs([]);
+      }
     } catch (err) {
-      console.log(err);
-      setError("Blog details could not be loaded.");
+      setError(
+        err.response?.data?.message ||
+          err.message ||
+          "Blog details could not be loaded."
+      );
       setBlog(null);
     } finally {
       setLoading(false);
@@ -46,6 +68,7 @@ const BlogDetails = () => {
     return (
       <div className="text-center my-5">
         <Spinner animation="border" variant="primary" />
+        <p className="mt-2">Loading blog details...</p>
       </div>
     );
   }
@@ -53,27 +76,29 @@ const BlogDetails = () => {
   if (error) {
     return (
       <Container className="my-5">
-        <Alert variant="danger">{error}</Alert>
+        <Alert variant="danger">
+          <strong>Error:</strong> {error}
+        </Alert>
       </Container>
     );
   }
 
-  const documents = blog.document
-  ?.split("\n")
-  .filter(item => item.trim() !== "");
+  if (!blog) {
+    return (
+      <Container className="my-5">
+        <Alert variant="warning">Blog not found.</Alert>
+      </Container>
+    );
+  }
 
+  const documents = blog.documents || [];
 
   return (
     <Container className="my-5">
       <Card className="shadow-lg border-0 overflow-hidden">
-        {/* Blog Image */}
-        <div
-          style={{
-            background: "#fff",
-            padding: "20px",
-            textAlign: "center",
-          }}
-        >
+
+        {/* IMAGE */}
+        <div style={{ background: "#fff", padding: "20px", textAlign: "center" }}>
           <img
             src={`https://scholarhub-backend.vercel.app/api/img/${blog._id}`}
             alt={blog.title}
@@ -88,16 +113,20 @@ const BlogDetails = () => {
         </div>
 
         <Card.Body className="p-4 p-lg-5">
+
+          {/* CATEGORY */}
           <Badge bg="success" className="mb-3 fs-6">
             {blog.category}
           </Badge>
 
           <h2 className="fw-bold mb-4">{blog.title}</h2>
 
+          {/* BASIC INFO */}
           <Row className="mb-4">
             <Col md={4}>
               <p>
-               <strong>{blog.city ? "City" : "Country"}:</strong> {blog.city || blog.country}
+                <strong>{blog.city ? "City" : "Country"}:</strong>{" "}
+                {blog.city || blog.country}
               </p>
             </Col>
 
@@ -117,6 +146,7 @@ const BlogDetails = () => {
 
           <hr />
 
+          {/* DESCRIPTION */}
           <h4 className="fw-bold">Description</h4>
           <p style={{ lineHeight: "2", textAlign: "justify" }}>
             {blog.description}
@@ -124,6 +154,7 @@ const BlogDetails = () => {
 
           <hr />
 
+          {/* BENEFITS */}
           <h4 className="fw-bold">Benefits</h4>
           <ul>
             {blog.benefit?.split("\n").map((item, index) => (
@@ -135,6 +166,7 @@ const BlogDetails = () => {
 
           <hr />
 
+          {/* CRITERIA */}
           <h4 className="fw-bold">Eligibility Criteria</h4>
           <p style={{ lineHeight: "2", textAlign: "justify" }}>
             {blog.criteria?.split("\n").map((item, index) => (
@@ -147,65 +179,103 @@ const BlogDetails = () => {
 
           <hr />
 
+          {/* DOCUMENTS */}
           <h4 className="fw-bold">Required Documents</h4>
-          {/* First line without bullet */}
-<p className="mb-2">{documents[0]}</p>
 
-{/* Remaining lines with bullets */}
-<ul>
-  {documents.slice(1).map((item, index) => (
-    <li key={index} className="mb-2">
-      {item}
-    </li>
-  ))}
-</ul>
+          {documents.length > 0 && (
+            <p className="mb-2">{documents[0]}</p>
+          )}
+
+          <ul>
+            {documents.slice(1).map((item, index) => (
+              <li key={index} className="mb-2">
+                {item}
+              </li>
+            ))}
+          </ul>
 
           <hr />
 
+          {/* APPLY */}
           <h4 className="fw-bold">How to Apply</h4>
           <ol>
-  {blog.apply
-    ?.split("\n")
-    .filter((item) => item.trim() !== "")
-    .map((item, index) => (
-      <li key={index} className="mb-2">
-        {item.trim()}
-      </li>
-    ))}
-</ol>
+            {blog.apply
+              ?.split("\n")
+              .filter((item) => item.trim() !== "")
+              .map((item, index) => (
+                <li key={index} className="mb-2">
+                  {item.trim()}
+                </li>
+              ))}
+          </ol>
 
           <hr />
 
+          {/* RELATED BLOGS */}
+          <Container className="my-4 p-4 shadow-sm border rounded bg-light">
+            <h5 className="fw-bold mb-3">Related Blogs</h5>
+
+            <div
+              style={{
+                maxHeight: "250px",
+                overflowY: "auto",
+                background: "#fff",
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                padding: "10px",
+              }}
+            >
+              {relatedBlogs.length === 0 ? (
+                <p className="mb-0">No related blogs found</p>
+              ) : (
+                relatedBlogs.map((item) => (
+                  <div
+                    key={item._id}
+                    style={{
+                      padding: "8px 10px",
+                      borderBottom: "1px solid #eee",
+                    }}
+                  >
+                    <a
+                      href={`/blog/${item._id}`}
+                      style={{
+                        textDecoration: "none",
+                        color: "#0d6efd",
+                        fontWeight: "500",
+                      }}
+                    >
+                      {item.title}
+                    </a>
+                  </div>
+                ))
+              )}
+            </div>
+          </Container>
+
+          {/* WEBSITE */}
           {blog.website && (
-  <>
-    <h4 className="fw-bold">Official Website</h4>
+            <>
+              <h4 className="fw-bold">Official Website</h4>
 
-    <div className="mt-4 text-center">
-      <Button
-        variant="primary"
-        size="lg"
-        href={blog.website}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        🌐 Visit Official Website
-      </Button>
+              <div className="mt-4 text-center">
+                <p>For application submission and full eligibility details, please proceed to the official website.</p>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  href={blog.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  🌐 Visit Official Website
+                </Button>
+              </div>
+            </>
+          )}
 
-      <p
-        className="mt-3 text-muted"
-        style={{ lineHeight: "1.8" }}
-      >
-        We recommend submitting your application only through the official
-        website. Please carefully review the eligibility criteria, required
-        documents, deadlines, and application instructions before applying.
-      </p>
-    </div>
-  </>
-)}
         </Card.Body>
       </Card>
     </Container>
   );
 };
 
-export default BlogDetails;  
+export default BlogDetails;
