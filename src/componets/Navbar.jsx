@@ -13,6 +13,13 @@ function NavigationBar() {
 
   const navigate = useNavigate();
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
   const handleSearch = (e) => {
     e.preventDefault();
 
@@ -37,7 +44,9 @@ function NavigationBar() {
         >
           <Nav className="mx-auto gap-2 gap-lg-3">
 
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/"
+             onClick={scrollToTop}
+            >
               Home
             </Nav.Link>
 
@@ -45,23 +54,23 @@ function NavigationBar() {
               title="Scholarships"
               id="scholarships-dropdown"
             >
-              <NavDropdown.Item as={Link} to="/country/Australia">
+              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/Australia">
                 Australia
               </NavDropdown.Item>
 
-              <NavDropdown.Item as={Link} to="/country/Italy">
+              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/Italy">
                 Italy
               </NavDropdown.Item>
 
-              <NavDropdown.Item as={Link} to="/country/China">
+              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/China">
                 China
               </NavDropdown.Item>
 
-              <NavDropdown.Item as={Link} to="/country/Turkey">
+              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/Turkey">
                 Turkey
               </NavDropdown.Item>
 
-              <NavDropdown.Item as={Link} to="/country/Germany">
+              <NavDropdown.Item as={Link}  onClick={scrollToTop} to="/country/Germany">
                 Germany
               </NavDropdown.Item>
             </NavDropdown>
@@ -80,25 +89,25 @@ function NavigationBar() {
               </NavDropdown.Item>
 
               <NavDropdown.Item
-                as={Link}
+                as={Link}  onClick={scrollToTop}
                 to="/category/Private Jobs"
               >
                 Private Jobs
               </NavDropdown.Item>
 
               <NavDropdown.Item
-                as={Link}
+                as={Link}  onClick={scrollToTop}
                 to="/category/Multinational Companies"
               >
                 Multinational Companies
               </NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link as={Link} to="/blogs">
+            <Nav.Link  as={Link}  to="/blogs">
               Blogs
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/contact">
+            <Nav.Link as={Link}  onClick={scrollToTop} to="/contact">
               Contact Us
             </Nav.Link>
 
