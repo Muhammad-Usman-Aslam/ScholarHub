@@ -107,7 +107,7 @@ const Footer = () => {
 
           {/* Footer Content */}
 
-          <Row className="gy-4">
+          <Row className="gy-2 mt-4" style={{ marginBottom: "-25px" }}>
 
             {/* Company */}
 
@@ -252,7 +252,7 @@ const Footer = () => {
               <div className="mt-4">
 
                 <a
-                  href="#"
+                  href="https://www.facebook.com/profile.php?id=61584621186156"
                   className="text-white me-3 fs-5"
                 >
                   <FaFacebookF />
