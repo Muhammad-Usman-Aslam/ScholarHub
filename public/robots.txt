@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://scholarhubwithusman.vercel.app/sitemap.xml
+Sitemap: https://myscholarhub.vercel.app/sitemap.xml

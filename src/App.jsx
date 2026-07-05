@@ -9,7 +9,7 @@ import BlogAll from "./componets/Blog-All";
 import Contact from "./componets/Contact";
 import Footer from "./componets/Footer"
 import About from './componets/About'
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
