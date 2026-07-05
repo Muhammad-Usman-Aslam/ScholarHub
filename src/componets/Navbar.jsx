@@ -7,6 +7,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import './Navbar.css'
+
 
 function NavigationBar() {
   const [keyword, setKeyword] = useState("");
