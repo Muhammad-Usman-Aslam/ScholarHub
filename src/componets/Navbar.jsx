@@ -37,7 +37,7 @@ function NavigationBar() {
     <>
       <style>{`
         .country-dropdown .dropdown-menu{
-          max-height:70vh;
+          max-height:50vh;
           overflow-y:auto;
           overflow-x:hidden;
           scrollbar-width:thin;
